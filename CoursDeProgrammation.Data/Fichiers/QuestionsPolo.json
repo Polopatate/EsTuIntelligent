@@ -1,6 +1,6 @@
 [
   {
-    "Question": "Pourquoi les chats se liche le cul?",
+    "Question": "Pourquoi les chats se lichent le cul?",
     "Reponses": [
       {
         "Identifiant": "a",
@@ -8,7 +8,7 @@
       },
       {
         "Identifiant": "b",
-        "Reponse": "Eulsé"
+        "Reponse": "EulsÃ©"
       },
       {
         "Identifiant": "c",
@@ -38,7 +38,7 @@
       },
       {
         "Identifiant": "d",
-        "Reponse": "C'est meilleur la crème glacée"
+        "Reponse": "C'est meilleur la crÃ¨me glacÃ©e"
       }
     ],
     "BonneReponse": "c"

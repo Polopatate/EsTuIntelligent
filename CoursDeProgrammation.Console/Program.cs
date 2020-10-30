@@ -1,9 +1,6 @@
 ﻿using System;
-using CoursDeProgrammation.Questions;
-using Newtonsoft.Json;
-using System.IO;
 using System.Linq;
-using System.Runtime;
+using CoursDeProgrammation.Data;
 
 namespace CoursDeProgrammation
 {
@@ -18,21 +15,22 @@ namespace CoursDeProgrammation
             Console.WriteLine("Pour quitter le programme, tapez le mot «fin».");
             Console.WriteLine();
 
-            var json = File.ReadAllText(
-                "C:\\Users\\li25tm\\source\\repos\\CoursDeProgrammation\\Questions\\Fichiers\\QuestionsPolo.json");
-            var donneesPolo = JsonConvert.DeserializeObject<InformationsSurLaQuestion[]>(json);
+            var repo = new QuestionRepository();
+            var donnees = repo.ObtenirInformationsSurLaquestion("Polo").ToList();
 
-            var question1 = donneesPolo.First();
+            // question 1 #########################################################################################
+
+            var question1 = donnees.First();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(question1.Question);
             Console.ResetColor();
 
-
             foreach (var reponse in question1.Reponses)
             {
                 Console.WriteLine(reponse.Identifiant + ") " + reponse.Reponse);
             }
+
             Console.WriteLine();
             Console.Write("Écrivez votre réponse ici: ");
             string texteSaisi = Console.ReadLine();
@@ -58,22 +56,22 @@ namespace CoursDeProgrammation
                 touche = Console.ReadKey();
             }
 
-
             Console.WriteLine();
             Console.WriteLine();
 
+            // question 2 #########################################################################################
 
-            var question2 = donneesPolo.Last();
+            var question2 = donnees.Last();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(question2.Question);
             Console.ResetColor();
 
-
             foreach (var reponse in question2.Reponses)
             {
                 Console.WriteLine(reponse.Identifiant + ") " + reponse.Reponse);
             }
+            
             Console.WriteLine();
             Console.Write("Écrivez votre réponse ici: ");
             string texteSaisi2 = Console.ReadLine();
@@ -90,13 +88,10 @@ namespace CoursDeProgrammation
                 Console.WriteLine("tu connais pas bien les createurs");
                 Console.ResetColor();
             }
+            
             Console.WriteLine();
             Console.Write("Appuyer sur enter pour continuer");
-            while (texteSaisi2 != MotPourSortir)
-            {
-                texteSaisi2 = Console.ReadLine();
-            }
-
+            
 
             while (texteSaisi != MotPourSortir)
             {

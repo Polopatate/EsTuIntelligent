@@ -1,6 +1,6 @@
-﻿namespace CoursDeProgrammation.Questions
+﻿namespace CoursDeProgrammation.DomainObjects
 {
-    internal class ReponseInfo
+    public class ReponseInfo
     {
         public string Identifiant { get; set; }
         public string Reponse { get; set; }
