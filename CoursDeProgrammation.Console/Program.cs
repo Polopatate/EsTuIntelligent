@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CoursDeProgrammation.Data;
+using CoursDeProgrammation.Caca;
 
 namespace CoursDeProgrammation
 {
@@ -17,81 +18,46 @@ namespace CoursDeProgrammation
 
             var repo = new QuestionRepository();
             var donnees = repo.ObtenirInformationsSurLaquestion("Polo").ToList();
+            var colorieuse = new CouleurDuTexte();
 
             // question 1 #########################################################################################
+            string texteSaisi = string.Empty;
 
-            var question1 = donnees.First();
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(question1.Question);
-            Console.ResetColor();
-
-            foreach (var reponse in question1.Reponses)
+            //var question1 = donnees.First();
+            foreach (var question in donnees)
             {
-                Console.WriteLine(reponse.Identifiant + ") " + reponse.Reponse);
-            }
+                colorieuse.EcrireEnCouleur(ConsoleColor.Cyan, question.Question);
 
-            Console.WriteLine();
-            Console.Write("Écrivez votre réponse ici: ");
-            string texteSaisi = Console.ReadLine();
+                foreach (var reponse in question.Reponses)
+                {
+                    Console.WriteLine(reponse.Identifiant + ") " + reponse.Reponse);
+                }
+                
+                colorieuse.EcrireEnCouleur(ConsoleColor.White, "Écrivez votre réponse ici: ");
+                texteSaisi = Console.ReadLine();
+                
+                if (texteSaisi == question.BonneReponse)
+                {
+                    colorieuse.EcrireEnCouleur(ConsoleColor.Green, "bravo maudit chevreuil t'a eu un point!");
+                }
+                else
+                {
+                    colorieuse.EcrireEnCouleur(ConsoleColor.DarkRed, "t nul t'as pas de point cheh");
+                }
+                Console.WriteLine();
+                Console.Write("Appuyer sur enter pour continuer");
 
-            if (texteSaisi == question1.BonneReponse)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("bravo maudit chevreuil t'a eu un point!");
-                Console.ResetColor();
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("t nul t'as pas de point cheh");
-                Console.ResetColor();
-            }
-            Console.WriteLine();
-            Console.Write("Appuyer sur enter pour continuer");
-            
-            var touche = Console.ReadKey();
-            while (touche.Key != ConsoleKey.Enter)
-            {
-                touche = Console.ReadKey();
-            }
+                var touche = Console.ReadKey();
+                while (touche.Key != ConsoleKey.Enter)
+                {
+                    touche = Console.ReadKey();
+                }
 
-            Console.WriteLine();
-            Console.WriteLine();
-
-            // question 2 #########################################################################################
-
-            var question2 = donnees.Last();
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(question2.Question);
-            Console.ResetColor();
-
-            foreach (var reponse in question2.Reponses)
-            {
-                Console.WriteLine(reponse.Identifiant + ") " + reponse.Reponse);
+                Console.WriteLine();
             }
             
             Console.WriteLine();
-            Console.Write("Écrivez votre réponse ici: ");
-            string texteSaisi2 = Console.ReadLine();
 
-            if (texteSaisi2 == question2.BonneReponse)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("t un winner le chevreuil");
-                Console.ResetColor();
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("tu connais pas bien les createurs");
-                Console.ResetColor();
-            }
-            
-            Console.WriteLine();
-            Console.Write("Appuyer sur enter pour continuer");
-            
 
             while (texteSaisi != MotPourSortir)
             {
