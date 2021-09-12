@@ -12,7 +12,9 @@ namespace CoursDeProgrammation.Data
         public IEnumerable<InformationsSurLaQuestion> ObtenirInformationsSurLaquestion(string nom)
         {
             var nomFormate = FirstCharToUpper(nom);
-            var json = File.ReadAllText($"C:\\Users\\li25tm\\source\\repos\\CoursDeProgrammation\\CoursDeProgrammation.Data\\Fichiers\\Questions{nomFormate}.json");
+            var repertoireExecution = Directory.GetCurrentDirectory();
+            var fichier = Path.Combine(repertoireExecution, $"Fichiers\\Questions{nomFormate}.json");
+            var json = File.ReadAllText(fichier);
             return JsonConvert.DeserializeObject<InformationsSurLaQuestion[]>(json);
         }
 
